@@ -50,8 +50,6 @@ public class AuthService {
        .role(Role.USER)
        .build();
 
-       System.out.println(user);
-
        userRepository.save(user);
 
        return AuthResponse.builder()
