@@ -43,18 +43,12 @@ public class AuthService {
     {
         System.out.println(request);
 
-        User user = new User();
-        user.setUsername(request.getUsername());
-        user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
-        user.setRole(Role.USER);
-        ;
-       /*User user = User.builder()
+       User user = User.builder()
        .username(request.getUsername())
        .email(request.getEmail())
        .password(request.getPassword())
        .role(Role.USER)
-       .build();*/
+       .build();
 
        System.out.println(user);
 
