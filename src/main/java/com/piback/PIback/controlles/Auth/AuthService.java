@@ -18,42 +18,37 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-    @Autowired
-    private final UserRepository userRepository;
 
-    @Autowired
+    private final UserRepository userRepository;
     private final JWTService jwtService;
-    //private final PasswordEncoder passwordEncoder;
-    @Autowired
+    private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
 
-    public AuthResponse login(LoginRequest request)
-    
-    {
-       return (null);
-        /*authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.findByUsername(), request.getPassword()));
-    UserDetails user = userRepository.findByUsername(request.getUsername()).orElseThrow();
-    String token = jwtService.getToken(user);
-    return AuthResponse.builder().token(token)
-    .build();*/
+    public AuthResponse login(LoginRequest request) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        UserDetails user=userRepository.findByUsername(request.getUsername()).orElseThrow();
+        String token=jwtService.getToken(user);
+        return AuthResponse.builder()
+            .token(token)
+            .build();
+
     }
-   
-    //Registro de Usuario
-    public AuthResponse register(RegisterRequest request)
-    {
-        System.out.println(request);
 
-       User user = User.builder()
-       .username(request.getUsername())
-       .email(request.getEmail())
-       .password(request.getPassword())
-       .role(Role.USER)
-       .build();
+    public AuthResponse register(RegisterRequest request) {
+        User user = User.builder()
+            .username(request.getUsername())
+            .email(request.getEmail())
+            .password(passwordEncoder.encode( request.getPassword()))
+            
+            .role(Role.USER)
+            .build();
 
-       userRepository.save(user);
+        userRepository.save(user);
 
-       return AuthResponse.builder()
-       .token(jwtService.getToken(user))
-       .build();
+        return AuthResponse.builder()
+            .token(jwtService.getToken(user))
+            .build();
+        
     }
+
 }

@@ -43,7 +43,7 @@ public class User implements UserDetails {
     @Column(name = "email", length = 30)
     private String email;
 
-    @Column(name = "password", length = 30)
+    @Column(name = "password", length = 150)
     private String password;
     @Enumerated(EnumType.STRING)
     Role role;
@@ -70,37 +70,7 @@ public class User implements UserDetails {
         return true;
     }
   
-   /*  @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    @Override
-    public String getUsername() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUsername'");
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-       return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }*/
-
+   
 
    /*@OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
    private Profile profile;
