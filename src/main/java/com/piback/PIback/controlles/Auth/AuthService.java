@@ -1,5 +1,6 @@
 package com.piback.PIback.controlles.Auth;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +18,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-
+    @Autowired
     private final UserRepository userRepository;
+
+    @Autowired
     private final JWTService jwtService;
     //private final PasswordEncoder passwordEncoder;
+    @Autowired
     private final AuthenticationManager authenticationManager;
 
     public AuthResponse login(LoginRequest request)
@@ -40,9 +44,10 @@ public class AuthService {
         System.out.println(request);
 
         User user = new User();
-        user.setUsername("ASASgggF");
-        user.setEmail("asda");
-        user.setPassword("null");
+        user.setUsername(request.getUsername());
+        user.setEmail(request.getEmail());
+        user.setPassword(request.getPassword());
+        user.setRole(Role.USER);
         ;
        /*User user = User.builder()
        .username(request.getUsername())
@@ -50,6 +55,8 @@ public class AuthService {
        .password(request.getPassword())
        .role(Role.USER)
        .build();*/
+
+       System.out.println(user);
 
        userRepository.save(user);
 

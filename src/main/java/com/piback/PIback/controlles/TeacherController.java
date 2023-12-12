@@ -35,6 +35,13 @@ public class TeacherController {
     {
         return teacherService.findById(id);
     }
+
+     @GetMapping("user/{id}")
+    public List<Teacher> findByUser(@PathVariable long id)
+    {
+        return teacherService.findByUser(id);
+    }
+
     @PutMapping("/{id}")
     public Teacher update(@RequestBody Teacher entity)
     {

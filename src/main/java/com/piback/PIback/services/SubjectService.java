@@ -24,6 +24,11 @@ public class SubjectService {
     {
         return subjectRepository.findById(id).orElse(null);
     }
+
+    public List<Subject> findByUserId(long id)
+    {
+        return subjectRepository.findByUserId(id).orElse(null);
+    }
     
     public void deleteByID (long id)
     {

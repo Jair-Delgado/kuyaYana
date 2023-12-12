@@ -26,7 +26,7 @@ public class SubjectController {
     @PostMapping("/save")
     public Subject saveProveedores(@RequestBody Subject entity) {
         
-        
+        System.out.println(entity);
         return subjectService.saveSubjectRepository(entity);
     }
 
@@ -35,6 +35,13 @@ public class SubjectController {
     {
         return subjectService.findById(id);
     }
+
+     @GetMapping("user/{id}")
+    public List<Subject> findByUser(@PathVariable long id)
+    {
+        return subjectService.findByUserId(id);
+    }
+
     @PutMapping("/{id}")
     public Subject update(@RequestBody Subject entity)
     {
