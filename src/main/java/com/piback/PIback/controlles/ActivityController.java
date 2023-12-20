@@ -24,30 +24,31 @@ import io.swagger.v3.oas.annotations.Operation;
 public class ActivityController {
     @Autowired 
     private ActivityService activityService;
-    @Operation(summary = "post activity", description = "Guarda actividades")
+    @Operation(summary = "Post Activity", description = "Guarda actividades")
     @PostMapping("/save")
     public Activity save(@RequestBody Activity entity)
     {
         return activityService.save(entity);
     }
-
+    @Operation(summary = "Get one Activity", description = "Consigue actividades por id")
     @GetMapping("/{id}/")
     public Activity findActivity(@PathVariable long id)
     {
         return activityService.findById(id);
     }
+    @Operation(summary = "Update one Activity", description = "Actualiza actividades por id")
     @PutMapping("/{id}/")
     public Activity update(@RequestBody Activity entity)
     {
         return activityService.save(entity);
     }
-
+    @Operation(summary = "Delete one Activity", description = "Elimina actividades por id")
     @DeleteMapping("/{id}/")
     public void deleteByID(@PathVariable long id)
     {
         activityService.deleteByID(id);
     }
-
+    @Operation(summary = "Get all Activities", description = "Consigue todas las actividades")
     @GetMapping("/")
     public List<Activity> findAll()
     {
