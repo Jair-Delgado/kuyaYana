@@ -48,7 +48,7 @@ public class EventCategoryController {
     {
         eventCategoryService.deleteByID(id);
     }
-    @Operation(summary = "Get all eventCategories", description = "Consigue todas las categoria evento")
+    @Operation(summary = "Get all eventCategories", description = "Consigue todas las categorias de eventos")
     @GetMapping("/")
     public List<EventCategory> findAll()
     {
