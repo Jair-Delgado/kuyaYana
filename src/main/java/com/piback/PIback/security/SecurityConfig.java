@@ -37,7 +37,7 @@ public class SecurityConfig {
         .cors(Customizer.withDefaults())
         .authorizeHttpRequests(authRequest ->
          authRequest
-         .requestMatchers("/auth/**","http:localhost/4200/*","/v3/**","/swagger-ui/**","/v3/api-docs/swagger-config").permitAll()
+         .requestMatchers("/auth/**","http:localhost/4200/*","/v3/**","/swagger-ui/**").permitAll()
          .anyRequest().authenticated()
         )
         .sessionManagement(sessionManager->
